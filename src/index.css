@@ -908,12 +908,135 @@ tr:hover td { background: #fdf9ff; }
 .fade-in { animation: fadeIn 0.3s ease forwards; }
 
 /* ===================== Responsive ===================== */
+
+/* Mobile close button — hanya muncul di mobile */
+.sidebar-close-btn {
+  display: none;
+}
+
+/* Mobile top bar — hidden di desktop */
+.mobile-topbar {
+  display: none;
+}
+
+/* Mobile drawer — hidden di desktop */
+.mobile-drawer {
+  display: none;
+}
+
+/* Mobile overlay */
+.mobile-overlay {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  :root { --sidebar-width: 0px; }
-  .sidebar { transform: translateX(-100%); }
-  .main-content { margin-left: 0; }
-  .page-header, .page-body { padding: 1rem; }
+  /* Sembunyikan desktop sidebar */
+  .desktop-sidebar {
+    display: none;
+  }
+
+  /* Layout tanpa sidebar */
+  .app-layout {
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding-top: 56px; /* tinggi mobile topbar */
+  }
+
+  /* ── Mobile top bar ── */
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    padding: 0 1rem;
+    z-index: 200;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  /* ── Hamburger button ── */
+  .hamburger-btn {
+    width: 36px; height: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+  }
+  .hamburger-btn:hover { background: var(--bg); }
+  .hamburger-btn span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  /* ── Drawer overlay ── */
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 0, 29, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 299;
+    animation: overlayIn 0.2s ease;
+  }
+
+  /* ── Mobile drawer sidebar ── */
+  .mobile-drawer {
+    display: flex !important;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 280px;
+    z-index: 300;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .mobile-drawer.open {
+    transform: translateX(0);
+  }
+
+  /* Tombol close di dalam drawer */
+  .sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 30px; height: 30px;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .sidebar-close-btn:hover {
+    background: rgba(217,45,32,0.6);
+    border-color: transparent;
+    color: #fff;
+  }
+
+  /* Page content padding */
+  .page-header { padding: 1rem; }
+  .page-body { padding: 1rem; }
+
+  /* Stats grid 2 kolom di mobile */
   .stats-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Landing */
   .landing-nav { height: auto; min-height: 68px; padding: 0.75rem 1rem; }
   .brand-mark small { display: none; }
   .landing-nav-actions { gap: 0.45rem; }
