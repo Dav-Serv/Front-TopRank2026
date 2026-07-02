@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const GOOGLE_AUTH_URL = 'http://localhost:3000/api/auth/google';
+const GOOGLE_AUTH_URL = `${import.meta.env.VITE_API_BASE_URL || ''}/api/auth/google`;
 
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', nim: '', faculty: '', major: '' });
